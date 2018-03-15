@@ -51,28 +51,24 @@ if(!isset($_SESSION['valid'])) {
             </div>
         </div>
     </nav>
-    <div class="media">
-        <div class="media-left">
-            <a><img class="img-thumbnail" src="assets/img/cagesugarglider.png" width="100" height="100"></a>
+    <div class="login-card">
+      <div class="row">
+        <div class="col">
+          <img class="img-thumbnail" src="assets/img/cagesugarglider.png" height="100" width="100">
+          <h4><strong>Sangkar</strong> </h4>
+          <p class="text-justify">Sangkar sugar gliders adalah salah satu komponen penting dalam memastikan mereka dapat rasa selesa dalam persekitaran baru mereka.<a data-toggle="collapse" data-target="#demo">Lagi..</a></p>
+          <p class="text-justify collapse" id="demo">Sugar gliders anda akan meluangkan majoriti masa mereka pada waktu malam di dalam sangkar mereka dan dengan memastikan bahawa sugars anda selesa, selamat&nbsp;dan bebas bersenam dengan sesuka hati mereka. </p>
+
         </div>
-        <div class="media-body">
-            <h4><strong>Sangkar</strong> </h4>
-            <p class="text-justify">Sangkar sugar gliders adalah salah satu komponen penting dalam memastikan mereka dapat rasa selesa dalam persekitaran baru mereka. Sugars anda akan meluangkan majoriti masa mereka pada waktu malam di dalam sangkar mereka dan dengan memastikan
-                bahawa sugars anda selesa, selamat&nbsp;dan bebas bersenam dengan sesuka hati mereka. </p>
-            <button class="btn btn-default" type="button">Button</button>
+        <div class="col">
+          <img class="img-thumbnail" src="assets/img/sugar_glider3.png" height="100" width="100">
+          <h4><strong>Makanan</strong> </h4>
+          <p class="text-justify">Sugar glider boleh dihidangkan dengan makanan seperti buah-buahan yang berlainan khasiat buatnya.<a data-toggle="collapse" data-target="#demo2">Lagi..</a></p>
+
+          <p class="text-justify collapse" id="demo2">Keaktifan Sugar glider menyebabkan sugar glider sangat memerlukan&nbsp;<strong>protein </strong>dalam jumlah tinggi untuk memenuhi keperluan tenaga mereka. Protein dan kalsium sangat diperlukan untuk meningkatkan metabolisme seekor Sugar glider. Kekurangan protein dapat menyebabkan pertumbuhan Sugar Glider terbantut dan kelihat kurus, sementara kekurangan kalsium dapat menyebabkan masalah yang lebih serius seperti Hind Leg Paralysis (HLP).
+          </p>
         </div>
-    </div>
-    <div class="media">
-        <div class="media-left">
-            <a><img class="img-thumbnail" src="assets/img/sugar_glider3.png" width="100" height="100"></a>
-        </div>
-        <div class="media-body">
-            <h4><strong>Makanan</strong> </h4>
-            <p class="text-justify">Sugar glider boleh dihidangkan dengan makanan seperti buah- buahan yang berlainan khasiat buatnya. Keaktifan Sugar glider menyebabkan sugar glider sangat memerlukan&nbsp;<strong>protein </strong>dalam jumlah tinggi untuk memenuhi keperluan
-                tenaga mereka. Protein dan kalsium sangat diperlukan untuk meningkatkan metabolisme seekor Sugar glider. Kekurangan protein dapat menyebabkan pertumbuhan Sugar Glider terbantut dan kelihat kurus, sementara kekurangan kalsium dapat menyebabkan
-                masalah yang lebih serius seperti Hind Leg Paralysis (HLP). </p>
-            <button class="btn btn-default" type="button">Button</button>
-        </div>
+      </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
