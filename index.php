@@ -39,7 +39,7 @@ if(!isset($_SESSION['valid'])) {
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="#"><strong>Utama</strong> </a>
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Utama</strong> </a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
