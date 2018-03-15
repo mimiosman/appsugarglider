@@ -1,42 +1,3 @@
-<?php
-// including the database connection file
-include_once("connection.php");
-
-if(isset($_POST['add']))
-{
-  $name = $_POST['name'];
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  $confirm_password = $_POST['confirm_password'];
-
-  // checking empty fields
-  if(empty($name) || empty($username) || empty($password) || empty($confirm_password)) {
-
-    if(empty($name)) {
-      echo "<font color='red'>Ruang nama kosong.</font><br/>";
-    }
-
-    if(empty($username)) {
-      echo "<font color='red'>Ruang kata nama kosong.</font><br/>";
-    }
-
-    if(empty($password)) {
-      echo "<font color='red'>Ruang kata laluan kosong.</font><br/>";
-    }
-
-    if(empty($confirm_password)) {
-      echo "<font color='red'>Ruang sahkan kata laluan kosong.</font><br/>";
-    }
-  } else {
-    //updating the table
-    $result = mysqli_query($mysqli, "INSERT INTO `login`(`name`, `email`, `username`, `password`) VALUES ('$name', '$username', '$username', md5('$password'))")
-    or die("Could not execute the select query.");
-
-    //redirectig to the display page. In our case, it is view.php
-    header("Location: login.php");
-  }
-}
-?>
 <!DOCTYPE html>
 <html>
 
@@ -71,20 +32,15 @@ if(isset($_POST['add']))
 <body>
   <div class="login-card">
     <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
-    <form class="form-signin" name="form1" method="post" action="register.php" ><span class="reauth-email"> Sila isi diruangan yang disediakan.</span>
-      <input class="form-control" type="text" required="" placeholder="Nama" autofocus="" name="name">
-      <input class="form-control" type="email" required="" placeholder="Alamat Emel" autofocus="" name="username">
-      <input class="form-control" type="password" required="" placeholder="Katalaluan" name="password">
-      <input class="form-control" type="password" required="" placeholder="Ulang Katalaluan" name="confirm_password">
-      <div class="checkbox">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" required>Saya telah baca dan segala terma dan syarat.
-          </label>
-        </div>
-      </div>
-      <input class="btn btn-primary btn-block btn-lg btn-signin" name="add" type="submit" value="DAFTAR">
-    </form>
+    <div class="caption">
+      <h3 class="text-center"><strong>APLIAKSI SlSTEM PAKAR DIAGNOSIS PENYAKIT SUGAR GLIDER</strong></h3>
+      <form class="form-signin">
+        <a class="btn btn-primary btn-block btn-lg btn-signin" role="button" href="register.php">DAFTAR </a>
+        <a class="btn btn-primary btn-block btn-lg btn-signin" role="button" href="login.php">LOG MASUK</a>
+      </form>
+    </div>
+    <div>
+    </div>
   </div>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
