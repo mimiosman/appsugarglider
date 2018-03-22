@@ -36,8 +36,8 @@ if(!isset($_SESSION['valid'])) {
   <meta name="theme-color" content="#ffffff">
 
 	<!-- web app manifest for Android Chrome -->
-	<link rel="manifest" href="manifest.json" />
-  <link href="assets/img/favicon/favicon.ico" rel="shortcut icon">
+	<!-- <link rel="manifest" href="manifest.json" />
+  <link href="assets/img/favicon/favicon.ico" rel="shortcut icon"> -->
 </head>
 
 <body>

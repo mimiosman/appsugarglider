@@ -1,5 +1,6 @@
 {
- "name": "App",
+ "short_name": "SG APP",
+ "name": "APLIAKSI SlSTEM PAKAR DIAGNOSIS PENYAKIT SUGAR GLIDER",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -37,5 +38,9 @@
    "type": "image\/png",
    "density": "4.0"
   }
- ]
+],
+"start_url": "home.php",
+"display": "standalone",
+"background_color": "#1c1c1c",
+"orientation": "portrait"
 }
