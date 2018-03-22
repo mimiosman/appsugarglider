@@ -34,6 +34,10 @@ if(!isset($_SESSION['valid'])) {
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
+
+	<!-- web app manifest for Android Chrome -->
+	<link rel="manifest" href="manifest.json" />
+
 </head>
 
 <body>
