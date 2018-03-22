@@ -39,7 +39,7 @@
       "density": 4.0
     }
   ],
-  "start_url": "/index.php",
+  "start_url": "/home.php",
   "display": "standalone",
   "background_color": "#1c1c1c",
   "orientation": "portrait"
