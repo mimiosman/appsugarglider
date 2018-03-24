@@ -11,6 +11,7 @@ include_once("connection.php");
 
 //getting id from url
 $id = $_GET['id'];
+$userId = $_SESSION['id'];
 
 //selecting data associated with this particular id
 $result = mysqli_query($mysqli, "SELECT * FROM pakar JOIN login ON pakar.Asker = login.id WHERE pakar.id=$id");
@@ -21,6 +22,8 @@ while($res = mysqli_fetch_array($result))
   $title = $res['Title'];
   $soalan = $res['Soalan'];
   $jawapan = $res['Jawapan'];
+  $status = $res['Status'];
+  $asker = $res['Asker'];
 }
 ?>
 <!DOCTYPE html>
@@ -76,12 +79,18 @@ while($res = mysqli_fetch_array($result))
     </nav>
     <div class="login-card">
         <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
-        <form class="form-signin" name="ask_expert" method="post" action="ask_expert.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+        <form class="form-signin" name="ask_expert" method="post" action="ask_expert.php">
             <input class="form-control" type="Text" placeholder="Penyoal" name="Penyoal" value="<?php echo $name ?>" readonly>
             <input class="form-control" type="Text" placeholder="Tajuk" name="tajuk" value="<?php echo $title ?>" readonly>
             <textarea class="form-control" rows="3" placeholder="Soalan" name="soalan" readonly><?php echo $soalan ?></textarea><br>
             <textarea class="form-control" rows="3" placeholder="Jawapan" name="jawapan" readonly><?php echo $jawapan ?></textarea><br>
-						<a class="btn btn-danger btn-block form-control" href="ask_expert.php">KEMBALI</a>
+						<a class="btn btn-primary btn-block form-control" href="ask_expert.php">KEMBALI</a><br>
+						<?php if ($status == 0 && $asker == $userId) { ?>
+							<div class="btn-group btn-group-justified" role="group">
+								<a class="btn btn-success" role="button" href="ask_expert_edit.php?id=<?php echo $id ?>">KEMASKINI</a>
+								<a class="btn btn-danger" role="button" href="ask_expert_delete.php?id=<?php echo $id ?>">PADAM</a>
+							</div>
+						<?php } ?>
         </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>

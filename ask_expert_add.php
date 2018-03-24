@@ -26,12 +26,12 @@ if(isset($_POST['ask']))
       echo "<font color='red'>Ruang Keterangan soalan kosong.</font><br/>";
     }
   } else {
-    //updating the table
-    $result = mysqli_query($mysqli, "INSERT INTO `pakar`(`Title`, `Soalan`, `Asker`) VALUES ('$tajuk','$soalan','$asker')")
+    //insert the table
+		$result = mysqli_query($mysqli, "INSERT INTO `pakar`(`Title`, `Soalan`, `Asker`) VALUES ('$tajuk','$soalan','$asker')")
     or die("Could not execute the select query.");
 
     //redirectig to the display page. In our case, it is view.php
-    header("Location: index.php");
+    header("Location: ask_expert.php");
   }
 }
 ?>
@@ -88,7 +88,7 @@ if(isset($_POST['ask']))
     </nav>
     <div class="login-card">
         <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
-        <form class="form-signin" name="ask_expert" method="post" action="ask_expert.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+        <form class="form-signin" method="post" action="ask_expert_add.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
             <input class="form-control" type="Text" required placeholder="Tajuk" autofocus="" name="tajuk">
             <!-- <input class="form-control" type="password" required="" placeholder="Soalan" id="inputPassword"> -->
             <textarea class="form-control" rows="3" required placeholder="Soalan" name="soalan"></textarea><br>

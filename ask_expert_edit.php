@@ -5,6 +5,39 @@ if(!isset($_SESSION['valid'])) {
 	header('Location: home.php');
 }
 ?>
+
+<?php
+// including the database connection file
+include_once("connection.php");
+
+if(isset($_POST['update']))
+{
+  $idSoalan = $_POST['idSoalan'];
+
+  $soalan = $_POST['soalan'];
+  $tajuk = $_POST['tajuk'];
+
+  // checking empty fields
+  if(empty($soalan) || empty($tajuk)) {
+
+    if(empty($soalan)) {
+      echo "<font color='red'>Ruang soalan kosong.</font><br/>";
+    }
+
+    if(empty($tajuk)) {
+      echo "<font color='red'>Ruang tajuk kosong.</font><br/>";
+    }
+  } else {
+    //updating the table
+    $result = mysqli_query($mysqli, "UPDATE `pakar` SET `Title`='$tajuk',`Soalan`='$soalan' WHERE `id` = '$idSoalan'")
+    or die("Could not execute the select query.");
+
+    //redirectig to the display page. In our case, it is view.php
+    header("Location: ask_expert_view.php?id=".$idSoalan);
+  }
+}
+?>
+
 <?php
 // including the database connection file
 include_once("connection.php");
@@ -76,12 +109,13 @@ while($res = mysqli_fetch_array($result))
     </nav>
     <div class="login-card">
         <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
-        <form class="form-signin" name="ask_expert" method="post" action="ask_expert.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
-            <input class="form-control" type="Text" placeholder="Penyoal" name="Penyoal" value="<?php echo $name ?>" readonly>
-            <input class="form-control" type="Text" placeholder="Tajuk" name="tajuk" value="<?php echo $title ?>" readonly>
-            <textarea class="form-control" rows="3" placeholder="Soalan" name="soalan" readonly><?php echo $soalan ?></textarea><br>
+        <form class="form-signin" name="ask_expert" method="post" action="ask_expert_edit.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+            <input class="form-control" type="Text" placeholder="Penyoal" name="penyoal" value="<?php echo $name ?>" readonly>
+            <input class="form-control" type="Text" placeholder="Tajuk" name="tajuk" value="<?php echo $title ?>">
+            <textarea class="form-control" rows="3" placeholder="Soalan" name="soalan"><?php echo $soalan ?></textarea><br>
             <textarea class="form-control" rows="3" placeholder="Jawapan" name="jawapan" readonly><?php echo $jawapan ?></textarea><br>
-						<a class="btn btn-danger btn-block form-control" href="ask_expert.php">KEMBALI</a>
+						<input type="hidden" name="idSoalan" value="<?php echo $id; ?>">
+						<input type="submit" class="btn btn-primary btn-block btn-signin form-control" name="update" value="KEMASKINI">
         </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>

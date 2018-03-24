@@ -15,18 +15,20 @@ $conn = mysql_connect("localhost","root","root")
 
  /* local */
 
-$databaseHost = 'localhost';
-$databaseName = 'test2';
-$databaseUsername = 'root';
-$databasePassword = '';
+// $databaseHost = 'localhost';
+// $databaseName = 'test2';
+// $databaseUsername = 'root';
+// $databasePassword = '';
+// $databasePort = '3306';
 
 /* remote */
 
-// $databaseHost = 'sql12.freemysqlhosting.net';
-// $databaseName = 'sql12203614';
-// $databaseUsername = 'sql12203614';
-// $databasePassword = 'qHsHKQXvx5';
+$databaseHost = 'mysql8.db4free.net';
+$databaseName = 'sugarglider';
+$databaseUsername = 'sugarglider';
+$databasePassword = 'sugarglider';
+$databasePort = '3307';
 
-$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName, $databasePort);
 
 ?>
