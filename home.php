@@ -37,7 +37,7 @@
   <div class="login-card">
     <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
     <div class="caption">
-      <h3 class="text-center"><strong>APLIAKSI SlSTEM PAKAR DIAGNOSIS PENYAKIT SUGAR GLIDER</strong></h3>
+      <h3 class="text-center"><strong>APLIKASI SlSTEM PAKAR DIAGNOSIS PENYAKIT SUGAR GLIDER</strong></h3>
       <form class="form-signin">
         <a class="btn btn-primary btn-block btn-lg btn-signin" role="button" href="register.php">DAFTAR </a>
         <a class="btn btn-primary btn-block btn-lg btn-signin" role="button" href="login.php">LOG MASUK</a>
