@@ -5,6 +5,36 @@ if(!isset($_SESSION['valid'])) {
 	header('Location: home.php');
 }
 ?>
+<?php
+// including the database connection file
+include_once("connection.php");
+
+if(isset($_POST['ask']))
+{
+  $tajuk = $_POST['tajuk'];
+  $soalan = $_POST['soalan'];
+  $asker = $_SESSION['id'];
+
+  // checking empty fields
+  if(empty($tajuk) || empty($soalan)) {
+
+    if(empty($tajuk)) {
+      echo "<font color='red'>Ruang tajuk kosong.</font><br/>";
+    }
+
+    if(empty($soalan)) {
+      echo "<font color='red'>Ruang Keterangan soalan kosong.</font><br/>";
+    }
+  } else {
+    //updating the table
+    $result = mysqli_query($mysqli, "INSERT INTO `pakar`(`Title`, `Soalan`, `Asker`) VALUES ('$tajuk','$soalan','$asker')")
+    or die("Could not execute the select query.");
+
+    //redirectig to the display page. In our case, it is view.php
+    header("Location: index.php");
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +73,7 @@ if(!isset($_SESSION['valid'])) {
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Diagnosis</strong> </a>
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Tanya Pakar</strong> </a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -56,9 +86,14 @@ if(!isset($_SESSION['valid'])) {
             </div>
         </div>
     </nav>
-    <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg">
-        <div class="caption">
-            <p class="lead text-justify"><strong>Halaman ini membenarkan anda untuk mendiagnos penyakit yang dialami oleh haiwan Sugar Glider anda</strong>.</p><a class="btn btn-primary btn-block" role="button" href="simptom.php"><strong>MULA</strong> </a></div>
+    <div class="login-card">
+        <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
+        <form class="form-signin" name="ask_expert" method="post" action="ask_expert.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+            <input class="form-control" type="Text" required placeholder="Tajuk" autofocus="" name="tajuk">
+            <!-- <input class="form-control" type="password" required="" placeholder="Soalan" id="inputPassword"> -->
+            <textarea class="form-control" rows="3" required placeholder="Soalan" name="soalan"></textarea><br>
+            <input class="btn btn-primary btn-block btn-signin form-control" type="submit" name="ask" value="HANTAR">
+        </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

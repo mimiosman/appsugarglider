@@ -2,7 +2,7 @@
 
 <?php
 if(!isset($_SESSION['valid'])) {
-  header('Location: home.php');
+	header('Location: home.php');
 }
 ?>
 <?php
@@ -13,12 +13,14 @@ include_once("connection.php");
 $id = $_GET['id'];
 
 //selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM penyakit WHERE id=$id");
+$result = mysqli_query($mysqli, "SELECT * FROM pakar JOIN login ON pakar.Asker = login.id WHERE pakar.id=$id");
 
 while($res = mysqli_fetch_array($result))
 {
   $name = $res['name'];
-  $detail = $res['detail'];
+  $title = $res['Title'];
+  $soalan = $res['Soalan'];
+  $jawapan = $res['Jawapan'];
 }
 ?>
 <!DOCTYPE html>
@@ -51,47 +53,39 @@ while($res = mysqli_fetch_array($result))
   <meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- web app manifest for Android Chrome -->
-  <link rel="manifest" href="manifest.json" />
+	<!-- web app manifest for Android Chrome -->
+	<link rel="manifest" href="manifest.json" />
   <link href="assets/img/favicon/favicon.ico" rel="shortcut icon">
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Diagnosis</strong> </a>
-        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-      </div>
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav">
-          <li role="presentation"><a href="diagnosis.php">Diagnosis</a></li>
-          <li role="presentation"><a href="ask_expert.php">Tanya Pakar</a></li>
-          <li role="presentation"><a href="care_tips.php">Penjagaan</a></li>
-          <li role="presentation"><a href="logout.php">Log Keluar</a></li>
-        </ul>
-      </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Tanya Pakar</strong> </a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li role="presentation"><a href="diagnosis.php">Diagnosis</a></li>
+                    <li role="presentation"><a href="ask_expert.php">Tanya Pakar</a></li>
+                    <li role="presentation"><a href="care_tips.php">Penjagaan</a></li>
+                    <li role="presentation"><a href="logout.php">Log Keluar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="login-card">
+        <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
+        <form class="form-signin" name="ask_expert" method="post" action="ask_expert.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+            <input class="form-control" type="Text" placeholder="Penyoal" name="Penyoal" value="<?php echo $name ?>" readonly>
+            <input class="form-control" type="Text" placeholder="Tajuk" name="tajuk" value="<?php echo $title ?>" readonly>
+            <textarea class="form-control" rows="3" placeholder="Soalan" name="soalan" readonly><?php echo $soalan ?></textarea><br>
+            <textarea class="form-control" rows="3" placeholder="Jawapan" name="jawapan" readonly><?php echo $jawapan ?></textarea><br>
+						<a class="btn btn-danger btn-block form-control" href="ask_expert.php">KEMBALI</a>
+        </form>
     </div>
-  </nav>
-  <?php if ($id == '' || $id == '0') { ?>
-    <div class="thumbnail">
-      <img src="assets/img/sugar_glider1.jpg">
-      <div class="caption">
-        <h3>Tahniah, Sugar Glider anda sihat!</h3>
-      </div>
-    </div>
-  <?php }else { ?>
-    <div class="thumbnail">
-      <div class="caption">
-        <h3><?php echo $name; ?></h3>
-        <textarea class="form-control" readonly rows="10" ><?php echo $detail; ?></textarea><br>
-        <a class="btn btn-primary btn-block" role="button" href="#CaraRawatan">
-          <strong>CARA RAWATAN</strong>
-        </a>
-      </div>
-    </div>
-  <?php } ?>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
