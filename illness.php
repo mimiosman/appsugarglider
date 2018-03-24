@@ -84,7 +84,7 @@ while($res = mysqli_fetch_array($result))
       <div class="caption">
         <h3><?php echo $name; ?></h3>
         <textarea class="form-control" readonly rows="10" ><?php echo $detail; ?></textarea><br>
-        <a class="btn btn-primary btn-block" role="button" href="#CaraRawatan">
+        <a class="btn btn-primary btn-block" role="button" href="treatement.php?id=<?php echo $id;?>">
           <strong>CARA RAWATAN</strong>
         </a>
       </div>

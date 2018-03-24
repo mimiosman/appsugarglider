@@ -14,14 +14,35 @@ function checkExist($user){
   include("connection.php");
   $result=mysqli_query($mysqli, "SELECT DISTINCT `counts` FROM `diagnosis` WHERE `userid` = '$user' ORDER BY 1 DESC LIMIT 1")
   or die("Could not execute the select query.");
-  $res = mysqli_fetch_assoc($result);
-  $calc = $res['count'];
-  if ($res == '') {
-    $cal = 1;
+  while($res = mysqli_fetch_array($result)) {
+    $calc =$res['counts'];
+  }
+  if (is_null($calc)) {
+    $cal=1;
   } else {
-    $cal = $calc + 1;
+    $cal=$calc+1;
   }
   return $cal;
+}
+
+function setPenyakit($user,$count){
+  include("connection.php");
+  $result=mysqli_query($mysqli, "SELECT id_penyakit, COUNT(id_penyakit) AS bilPenyakit FROM diagnosis
+    JOIN link ON id_simptom = simptomid
+    WHERE answer = 1 AND userid = '$user' AND counts = '$count'
+    GROUP BY id_penyakit
+    ORDER BY 2 DESC
+    LIMIT 1")
+  or die("Could not execute the select query penyakit.");
+  while($res = mysqli_fetch_array($result)) {
+    $sakit =$res['id_penyakit'];
+  }
+  if (is_null($sakit)) {
+    $sick = 0;
+  } else {
+    $sick = $sakit;
+  }
+  return $sick;
 }
 
 if(isset($_POST['bulk_add_submit'])){
@@ -36,6 +57,10 @@ if(isset($_POST['bulk_add_submit'])){
     $result=mysqli_query($mysqli, "INSERT INTO `diagnosis`(`userid`, `simptomid`, `answer`, `counts`) VALUES ('$userId','$simp','$ans', '$count')")
     or die("Could not execute the INSERT query.");
   }
+  $sickId = setPenyakit($userId,$count);
+  if (is_null($sickId)) {
+    $sickId = 0;
+  }
 
-  header("Location: illness.php?id=");
+  header("Location: illness.php?id=".$sickId);
 }
