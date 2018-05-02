@@ -15,6 +15,21 @@ $result = mysqli_query($mysqli, "SELECT * FROM simptom");
 $num = 0;
 $userId = $_SESSION['id'];
 ?>
+
+<?php
+function divide($count){
+  if ($count <= 5) {
+    $tab = 1;
+  } elseif ($count >= 6 and $count <= 10) {
+    $tab = 2;
+  } elseif ($count >= 11 and $count <= 15) {
+    $tab = 3;
+  } elseif ($count >= 16 and $count <= 20) {
+    $tab = 4;
+  }
+  return $tab;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -71,8 +86,9 @@ $userId = $_SESSION['id'];
       <?php
       while($res = mysqli_fetch_array($result)) {
         $num++;
+        $tabNum = divide($num);
         ?>
-        <div class="caption">
+        <div class="caption tab<?php echo $tabNum; ?>">
           <p><?php echo $num . ". " . $res['detail']; ?></p>
           <div class="btn-group btn-group-justified" role="group">
             <label class="radio-inline"><input type="radio" name="ansArr[<?php echo $num; ?>]" value="1" required>Ya</label>
@@ -85,11 +101,59 @@ $userId = $_SESSION['id'];
       ?>
       <input type="hidden" name="count" value="<?php echo $num; ?>">
       <input type="hidden" name="userId" value="<?php echo $userId; ?>">
-      <input type="submit" class="btn btn-primary btn-block" name="bulk_add_submit" value="LIHAT KEPUTUSAN">
+      <button type="button" id="btn1" class="btn btn-primary btn-block">Seterusnya</button>
+      <button type="button" id="btn2" class="btn btn-primary btn-block">Seterusnya</button>
+      <button type="button" id="btn3" class="btn btn-primary btn-block">Seterusnya</button>
+      <input type="submit" id="btn4" class="btn btn-primary btn-block" name="bulk_add_submit" value="LIHAT KEPUTUSAN">
     </form>
   </div>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $(".tab1").show();
+    $(".tab2").hide();
+    $(".tab3").hide();
+    $(".tab4").hide();
+    $("#btn1").show();
+    $("#btn2").hide();
+    $("#btn3").hide();
+    $("#btn4").hide();
+
+    $("#btn1").click(function(){
+      $(".tab1").hide();
+      $(".tab2").show();
+      $(".tab3").hide();
+      $(".tab4").hide();
+      $("#btn1").hide();
+      $("#btn2").show();
+      $("#btn3").hide();
+      $("#btn4").hide();
+    });
+
+    $("#btn2").click(function(){
+      $(".tab1").hide();
+      $(".tab2").hide();
+      $(".tab3").show();
+      $(".tab4").hide();
+      $("#btn1").hide();
+      $("#btn2").hide();
+      $("#btn3").show();
+      $("#btn4").hide();
+    });
+
+    $("#btn3").click(function(){
+      $(".tab1").hide();
+      $(".tab2").hide();
+      $(".tab3").hide();
+      $(".tab4").show();
+      $("#btn1").hide();
+      $("#btn2").hide();
+      $("#btn3").hide();
+      $("#btn4").show();
+    });
+  });
+  </script>
 </body>
 
 </html>
