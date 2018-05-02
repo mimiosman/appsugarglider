@@ -63,6 +63,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM penjagaan");
             </div>
         </div>
     </nav>
+		<br>
+		<br>
     <div class="login-card">
       <div class="row">
 				<?php

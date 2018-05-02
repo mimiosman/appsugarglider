@@ -81,6 +81,8 @@ function divide($count){
       </div>
     </div>
   </nav>
+  <br>
+  <br>
   <div class="thumbnail">
     <form id="save" action="simptom_save.php" method="post">
       <?php
@@ -102,8 +104,11 @@ function divide($count){
       <input type="hidden" name="count" value="<?php echo $num; ?>">
       <input type="hidden" name="userId" value="<?php echo $userId; ?>">
       <button type="button" id="btn1" class="btn btn-primary btn-block">Seterusnya</button>
+      <button type="button" id="btn22" class="btn btn-danger btn-block">Kembali</button>
       <button type="button" id="btn2" class="btn btn-primary btn-block">Seterusnya</button>
+      <button type="button" id="btn33" class="btn btn-danger btn-block">Kembali</button>
       <button type="button" id="btn3" class="btn btn-primary btn-block">Seterusnya</button>
+      <button type="button" id="btn44" class="btn btn-danger btn-block">Kembali</button>
       <input type="submit" id="btn4" class="btn btn-primary btn-block" name="bulk_add_submit" value="LIHAT KEPUTUSAN">
     </form>
   </div>
@@ -119,6 +124,10 @@ function divide($count){
     $("#btn2").hide();
     $("#btn3").hide();
     $("#btn4").hide();
+    $("#btn11").show();
+    $("#btn22").hide();
+    $("#btn33").hide();
+    $("#btn44").hide();
 
     $("#btn1").click(function(){
       $(".tab1").hide();
@@ -129,6 +138,25 @@ function divide($count){
       $("#btn2").show();
       $("#btn3").hide();
       $("#btn4").hide();
+      $("#btn11").hide();
+      $("#btn22").show();
+      $("#btn33").hide();
+      $("#btn44").hide();
+    });
+
+    $("#btn22").click(function(){
+      $(".tab1").show();
+      $(".tab2").hide();
+      $(".tab3").hide();
+      $(".tab4").hide();
+      $("#btn1").show();
+      $("#btn2").hide();
+      $("#btn3").hide();
+      $("#btn4").hide();
+      $("#btn11").show();
+      $("#btn22").hide();
+      $("#btn33").hide();
+      $("#btn44").hide();
     });
 
     $("#btn2").click(function(){
@@ -140,6 +168,25 @@ function divide($count){
       $("#btn2").hide();
       $("#btn3").show();
       $("#btn4").hide();
+      $("#btn11").hide();
+      $("#btn22").hide();
+      $("#btn33").show();
+      $("#btn44").hide();
+    });
+
+    $("#btn33").click(function(){
+      $(".tab1").hide();
+      $(".tab2").show();
+      $(".tab3").hide();
+      $(".tab4").hide();
+      $("#btn1").hide();
+      $("#btn2").show();
+      $("#btn3").hide();
+      $("#btn4").hide();
+      $("#btn11").hide();
+      $("#btn22").show();
+      $("#btn33").hide();
+      $("#btn44").hide();
     });
 
     $("#btn3").click(function(){
@@ -151,6 +198,25 @@ function divide($count){
       $("#btn2").hide();
       $("#btn3").hide();
       $("#btn4").show();
+      $("#btn11").hide();
+      $("#btn22").hide();
+      $("#btn33").hide();
+      $("#btn44").show();
+    });
+
+    $("#btn44").click(function(){
+      $(".tab1").hide();
+      $(".tab2").hide();
+      $(".tab3").show();
+      $(".tab4").hide();
+      $("#btn1").hide();
+      $("#btn2").hide();
+      $("#btn3").show();
+      $("#btn4").hide();
+      $("#btn11").hide();
+      $("#btn22").hide();
+      $("#btn33").show();
+      $("#btn44").hide();
     });
   });
   </script>

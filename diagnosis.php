@@ -56,6 +56,8 @@ if(!isset($_SESSION['valid'])) {
             </div>
         </div>
     </nav>
+		<br>
+		<br>
     <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg">
         <div class="caption">
             <p class="lead text-justify"><strong>Halaman ini membenarkan anda untuk mendiagnos penyakit yang dialami oleh haiwan Sugar Glider anda</strong>.</p><a class="btn btn-primary btn-block" role="button" href="simptom.php"><strong>MULA</strong> </a></div>

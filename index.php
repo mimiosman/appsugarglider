@@ -56,6 +56,8 @@ if(!isset($_SESSION['valid'])) {
             </div>
         </div>
     </nav>
+		<br>
+		<br>
     <div class="login-card">
       <div class="rows">
         <h1>Sugar Glider</h1>

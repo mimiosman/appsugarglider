@@ -72,6 +72,8 @@ while($res = mysqli_fetch_array($result))
       </div>
     </div>
   </nav>
+  <br>
+  <br>
   <?php if ($id == '' || $id == '0') { ?>
     <div class="thumbnail">
       <img src="assets/img/sugar_glider1.jpg">

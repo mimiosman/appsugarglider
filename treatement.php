@@ -65,6 +65,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM link JOIN rawatan ON id_rawatan =
       </div>
     </div>
   </nav>
+  <br>
+  <br>
   <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg">
     <div class="caption">
       <h3><strong>Cara Rawatan</strong></h3>

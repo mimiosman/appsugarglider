@@ -63,6 +63,8 @@ $result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_
 			</div>
 		</div>
 	</nav>
+	<br>
+	<br>
 	<div class="login-card">
 		<div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
 		<table class="table table-striped table-responsive">
