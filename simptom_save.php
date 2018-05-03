@@ -62,5 +62,9 @@ if(isset($_POST['bulk_add_submit'])){
     $sickId = 0;
   }
 
+  $query2="INSERT INTO `result`(`sickness`, `user`, `diagnoseCount`) VALUES ('$sickId','$userId','$count')";
+  $result2=mysqli_query($mysqli, $query2)
+  or die("Could not execute the INSERT penyakit query.");
+
   header("Location: illness.php?id=".$sickId);
 }
