@@ -74,19 +74,19 @@
     <form class="form-signin" name="form1" method="post" action="">
       <input class="form-control" type="email" required="" placeholder="Alamat Emel" autofocus="" name="username">
       <input class="form-control" type="password" required="" placeholder="Katalauan" name="password">
-      <div class="checkbox">
+      <!-- <div class="checkbox">
         <div class="checkbox">
           <label>
             <input type="checkbox">Ingatkan saya
           </label>
         </div>
-      </div>
+      </div> -->
       <button class="btn btn-primary btn-lg btn-signin" name="submit" type="submit">LOG MASUK</button>
     </form>
     <?php
     }
     ?>
-    <a href="#Terlupa Katalaluan" class="forgot-password">Anda terlupa katalaluan?</a>
+    <!-- <a href="#Terlupa Katalaluan" class="forgot-password">Anda terlupa katalaluan?</a> -->
   </div>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>

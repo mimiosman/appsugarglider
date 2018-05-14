@@ -71,7 +71,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM penjagaan");
 				while($res = mysqli_fetch_array($result)) {
 					?>
         <div class="col">
-          <img class="img-thumbnail" src="assets/img/cagesugarglider.png" height="100" width="100">
+          <img class="img-thumbnail" src="assets/img/<?php echo $res['Image']; ?>" height="100" width="100">
           <h4><strong><?php echo $res['title']; ?></strong> </h4>
           <p class="text-justify"><?php echo $res['description']; ?></p>
 
