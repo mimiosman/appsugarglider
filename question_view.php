@@ -5,6 +5,27 @@ if(!isset($_SESSION['valid'])) {
 	header('Location: home.php');
 }
 ?>
+<?php
+// including the database connection file
+include_once("connection.php");
+
+//getting id from url
+$id = $_GET['id'];
+$userId = $_SESSION['id'];
+
+//selecting data associated with this particular id
+$result = mysqli_query($mysqli, "SELECT * FROM pakar JOIN login ON pakar.Asker = login.id WHERE pakar.id=$id");
+
+while($res = mysqli_fetch_array($result))
+{
+  $name = $res['name'];
+  $title = $res['Title'];
+  $soalan = $res['Soalan'];
+  $jawapan = $res['Jawapan'];
+  $status = $res['Status'];
+  $asker = $res['Asker'];
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +64,7 @@ if(!isset($_SESSION['valid'])) {
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Utama</strong> </a>
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Soalan Saya</strong> </a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -60,14 +81,20 @@ if(!isset($_SESSION['valid'])) {
 		<br>
 		<br>
     <div class="login-card">
-      <div class="rows">
-        <h1>Sugar Glider</h1>
-        <div class="thumbnail">
-          <img src="assets/img/sugar_glider3.png">
-        </div>
-        <p class="text-justify"><em>Sugar Glider</em> atau nama saintifiknya <em>Pretaurus Breviceps</em> merupakan haiwan <em>marsupial</em> yangberasal dari Australia, dan sebahagian daripada Indonesia dan New Guinea. Haiwan ini bukan tergolong dalam spesies tupai terbang, dan diklasifikasikan sebagai haiwan eksotik di Amerika. <a data-toggle="collapse" data-target="#demo">Lagi..</a></p>
-        <p class="text-justify collapse" id="demo">Haiwan ini juga adalah haiwan <em>nocturnal</em> iaitu berjaga dan mencarimakanan pada waktu malam hari dan tidur sepanjang siang hari. Haiwan ini jika melahirkan anak, ia akan di jaga dan disusui di dalam kantung perut ibunya samasebagaimana kanggaru. Nama <em>Sugar Glider</em> datangnya daripada pemakanan mereka yang gemar makan buah-buahan manis (gula atau madu) dan <em>Glider</em> dari tingkahlaku mereka yang suka melompat dan menjunam menggunakan membran yang dinamakan <em>patagium</em>.</p>
-      </div>
+        <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
+        <form class="form-signin" name="ask_expert" method="post" action="question.php">
+            <input class="form-control" type="Text" placeholder="Penyoal" name="Penyoal" value="<?php echo $name ?>" readonly>
+            <input class="form-control" type="Text" placeholder="Tajuk" name="tajuk" value="<?php echo $title ?>" readonly>
+            <textarea class="form-control" rows="3" placeholder="Soalan" name="soalan" readonly><?php echo $soalan ?></textarea><br>
+            <textarea class="form-control" rows="3" placeholder="Jawapan" name="jawapan" readonly><?php echo $jawapan ?></textarea><br>
+						<a class="btn btn-primary btn-block form-control" href="question.php">KEMBALI</a><br>
+						<?php if ($status == 0 && $asker == $userId) { ?>
+							<div class="btn-group btn-group-justified" role="group">
+								<a class="btn btn-success" role="button" href="question_edit.php?id=<?php echo $id ?>">KEMASKINI</a>
+								<a class="btn btn-danger" role="button" href="question_delete.php?id=<?php echo $id ?>">PADAM</a>
+							</div>
+						<?php } ?>
+        </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

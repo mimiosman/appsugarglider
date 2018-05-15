@@ -5,6 +5,57 @@ if(!isset($_SESSION['valid'])) {
 	header('Location: home.php');
 }
 ?>
+
+<?php
+// including the database connection file
+include_once("connection.php");
+
+if(isset($_POST['update']))
+{
+  $idSoalan = $_POST['idSoalan'];
+
+  $soalan = $_POST['soalan'];
+  $tajuk = $_POST['tajuk'];
+
+  // checking empty fields
+  if(empty($soalan) || empty($tajuk)) {
+
+    if(empty($soalan)) {
+      echo "<font color='red'>Ruang soalan kosong.</font><br/>";
+    }
+
+    if(empty($tajuk)) {
+      echo "<font color='red'>Ruang tajuk kosong.</font><br/>";
+    }
+  } else {
+    //updating the table
+    $result = mysqli_query($mysqli, "UPDATE `pakar` SET `Title`='$tajuk',`Soalan`='$soalan' WHERE `id` = '$idSoalan'")
+    or die("Could not execute the select query.");
+
+    //redirectig to the display page. In our case, it is view.php
+    header("Location: question_view.php?id=".$idSoalan);
+  }
+}
+?>
+
+<?php
+// including the database connection file
+include_once("connection.php");
+
+//getting id from url
+$id = $_GET['id'];
+
+//selecting data associated with this particular id
+$result = mysqli_query($mysqli, "SELECT * FROM pakar JOIN login ON pakar.Asker = login.id WHERE pakar.id=$id");
+
+while($res = mysqli_fetch_array($result))
+{
+  $name = $res['name'];
+  $title = $res['Title'];
+  $soalan = $res['Soalan'];
+  $jawapan = $res['Jawapan'];
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +94,7 @@ if(!isset($_SESSION['valid'])) {
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Utama</strong> </a>
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Soalan Saya</strong> </a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -60,14 +111,15 @@ if(!isset($_SESSION['valid'])) {
 		<br>
 		<br>
     <div class="login-card">
-      <div class="rows">
-        <h1>Sugar Glider</h1>
-        <div class="thumbnail">
-          <img src="assets/img/sugar_glider3.png">
-        </div>
-        <p class="text-justify"><em>Sugar Glider</em> atau nama saintifiknya <em>Pretaurus Breviceps</em> merupakan haiwan <em>marsupial</em> yangberasal dari Australia, dan sebahagian daripada Indonesia dan New Guinea. Haiwan ini bukan tergolong dalam spesies tupai terbang, dan diklasifikasikan sebagai haiwan eksotik di Amerika. <a data-toggle="collapse" data-target="#demo">Lagi..</a></p>
-        <p class="text-justify collapse" id="demo">Haiwan ini juga adalah haiwan <em>nocturnal</em> iaitu berjaga dan mencarimakanan pada waktu malam hari dan tidur sepanjang siang hari. Haiwan ini jika melahirkan anak, ia akan di jaga dan disusui di dalam kantung perut ibunya samasebagaimana kanggaru. Nama <em>Sugar Glider</em> datangnya daripada pemakanan mereka yang gemar makan buah-buahan manis (gula atau madu) dan <em>Glider</em> dari tingkahlaku mereka yang suka melompat dan menjunam menggunakan membran yang dinamakan <em>patagium</em>.</p>
-      </div>
+        <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
+        <form class="form-signin" name="ask_expert" method="post" action="question_edit.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+            <input class="form-control" type="Text" placeholder="Penyoal" name="penyoal" value="<?php echo $name ?>" readonly>
+            <input class="form-control" type="Text" placeholder="Tajuk" name="tajuk" value="<?php echo $title ?>">
+            <textarea class="form-control" rows="3" placeholder="Soalan" name="soalan"><?php echo $soalan ?></textarea><br>
+            <textarea class="form-control" rows="3" placeholder="Jawapan" name="jawapan" readonly><?php echo $jawapan ?></textarea><br>
+						<input type="hidden" name="idSoalan" value="<?php echo $id; ?>">
+						<input type="submit" class="btn btn-primary btn-block btn-signin form-control" name="update" value="KEMASKINI">
+        </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

@@ -8,9 +8,9 @@ if(!isset($_SESSION['valid'])) {
 <?php
 //including the database connection file
 include_once("connection.php");
-
+$user = $_SESSION['id'];
 //fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_login FROM pakar JOIN login ON pakar.Asker = login.id WHERE pakar.Status = 1");
+$result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_login FROM pakar JOIN login ON pakar.Asker = login.id WHERE pakar.Asker = $user");
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,7 +68,7 @@ $result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
-			<div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Tanya Pakar</strong> </a>
+			<div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Soalan Saya</strong> </a>
 				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 			</div>
 			<div class="collapse navbar-collapse" id="navcol-1">
@@ -93,6 +93,7 @@ $result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_
 				<tr>
 					<th>Penyoal</th>
 					<th>Tajuk</th>
+					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody id="soal">
@@ -101,7 +102,14 @@ $result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_
 					?>
 					<tr>
 						<td><?php echo $res['name']; ?></td>
-						<td><a href='ask_expert_view.php?id=<?php echo $res['id_pakar']; ?>'><?php echo $res['Title']; ?></a></td>
+						<td><?php echo $res['Title']; ?></td>
+						<td><?php
+						if ($res['Status'] == 0) {
+							echo "<a type='button' class='btn btn-xs btn-danger' href='question_view.php?id=".$res['id_pakar']."'>Belum</a>";
+						} elseif ($res['Status'] == 1) {
+							echo "<a type='button' class='btn btn-xs btn-success' href='question_view.php?id=".$res['id_pakar']."'>Sudah</a>";
+						}
+						?></td>
 					</tr>
 					<?php
 				}
@@ -109,7 +117,7 @@ $result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_
 			</tbody>
 		</table>
 		<br>
-		<a class="btn btn-primary btn-block btn-signin form-control" href="ask_expert_add.php">Tambah Soalan</a>
+		<a class="btn btn-primary btn-block btn-signin form-control" href="question_add.php">Tambah Soalan</a>
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery-paginate.min.js"></script>

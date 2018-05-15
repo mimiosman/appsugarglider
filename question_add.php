@@ -5,6 +5,36 @@ if(!isset($_SESSION['valid'])) {
 	header('Location: home.php');
 }
 ?>
+<?php
+// including the database connection file
+include_once("connection.php");
+
+if(isset($_POST['ask']))
+{
+  $tajuk = $_POST['tajuk'];
+  $soalan = $_POST['soalan'];
+  $asker = $_SESSION['id'];
+
+  // checking empty fields
+  if(empty($tajuk) || empty($soalan)) {
+
+    if(empty($tajuk)) {
+      echo "<font color='red'>Ruang tajuk kosong.</font><br/>";
+    }
+
+    if(empty($soalan)) {
+      echo "<font color='red'>Ruang Keterangan soalan kosong.</font><br/>";
+    }
+  } else {
+    //insert the table
+		$result = mysqli_query($mysqli, "INSERT INTO `pakar`(`Title`, `Soalan`, `Asker`) VALUES ('$tajuk','$soalan','$asker')")
+    or die("Could not execute the select query.");
+
+    //redirectig to the display page. In our case, it is view.php
+    header("Location: question.php");
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +73,7 @@ if(!isset($_SESSION['valid'])) {
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Utama</strong> </a>
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php"><strong>Soalan Saya</strong> </a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -60,14 +90,13 @@ if(!isset($_SESSION['valid'])) {
 		<br>
 		<br>
     <div class="login-card">
-      <div class="rows">
-        <h1>Sugar Glider</h1>
-        <div class="thumbnail">
-          <img src="assets/img/sugar_glider3.png">
-        </div>
-        <p class="text-justify"><em>Sugar Glider</em> atau nama saintifiknya <em>Pretaurus Breviceps</em> merupakan haiwan <em>marsupial</em> yangberasal dari Australia, dan sebahagian daripada Indonesia dan New Guinea. Haiwan ini bukan tergolong dalam spesies tupai terbang, dan diklasifikasikan sebagai haiwan eksotik di Amerika. <a data-toggle="collapse" data-target="#demo">Lagi..</a></p>
-        <p class="text-justify collapse" id="demo">Haiwan ini juga adalah haiwan <em>nocturnal</em> iaitu berjaga dan mencarimakanan pada waktu malam hari dan tidur sepanjang siang hari. Haiwan ini jika melahirkan anak, ia akan di jaga dan disusui di dalam kantung perut ibunya samasebagaimana kanggaru. Nama <em>Sugar Glider</em> datangnya daripada pemakanan mereka yang gemar makan buah-buahan manis (gula atau madu) dan <em>Glider</em> dari tingkahlaku mereka yang suka melompat dan menjunam menggunakan membran yang dinamakan <em>patagium</em>.</p>
-      </div>
+        <div class="thumbnail"><img src="assets/img/sugar_glider1.jpg"></div>
+        <form class="form-signin" method="post" action="question_add.php"><span class="reauth-email"><strong>Sila isi diruangan yang disediakan</strong></span>
+            <input class="form-control" type="Text" required placeholder="Tajuk" autofocus="" name="tajuk">
+            <!-- <input class="form-control" type="password" required="" placeholder="Soalan" id="inputPassword"> -->
+            <textarea class="form-control" rows="3" required placeholder="Soalan" name="soalan"></textarea><br>
+            <input class="btn btn-primary btn-block btn-signin form-control" type="submit" name="ask" value="HANTAR">
+        </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

@@ -75,6 +75,7 @@ function divide($count){
         <ul class="nav navbar-nav">
           <li role="presentation"><a href="diagnosis.php">Diagnosis</a></li>
           <li role="presentation"><a href="ask_expert.php">Tanya Pakar</a></li>
+					<li role="presentation"><a href="question.php">Soalan Saya</a></li>
           <li role="presentation"><a href="care_tips.php">Penjagaan</a></li>
           <li role="presentation"><a href="logout.php">Log Keluar</a></li>
         </ul>
