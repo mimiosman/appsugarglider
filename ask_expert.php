@@ -109,7 +109,7 @@ $result = mysqli_query($mysqli, "SELECT *, pakar.id AS id_pakar, login.id AS id_
 			</tbody>
 		</table>
 		<br>
-		<a class="btn btn-primary btn-block btn-signin form-control" href="ask_expert_add.php">Tambah Soalan</a>
+		<!-- <a class="btn btn-primary btn-block btn-signin form-control" href="ask_expert_add.php">Tambah Soalan</a> -->
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery-paginate.min.js"></script>

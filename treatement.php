@@ -79,7 +79,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM link JOIN rawatan ON id_rawatan =
           <?php
         }
         ?>
-      </ul><a class="btn btn-primary btn-block" role="button" href="diagnosis.php"><strong>KEMBALI</strong></a></div>
+      </ul><a class="btn btn-primary btn-block" role="button" href="diagnosis.php"><strong>Diagnosis Semula</strong></a></div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
